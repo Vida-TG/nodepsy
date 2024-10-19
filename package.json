@@ -9,7 +9,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "cli",
+    "nodejs",
+    "generator"
+  ],
+  "author": "ViDA",
   "license": "MIT",
   "dependencies": {
     "commander": "^8.3.0"
