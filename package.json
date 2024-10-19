@@ -1,0 +1,17 @@
+{
+  "name": "nodepsy",
+  "version": "0.0.1",
+  "description": "Node.js project generator and user management CLI",
+  "main": "src/index.js",
+  "bin": {
+    "nodepsy": "./src/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^8.3.0"
+  }
+}
