@@ -17,6 +17,7 @@
   "author": "ViDA",
   "license": "MIT",
   "dependencies": {
-    "commander": "^8.3.0"
+    "commander": "^8.3.0",
+    "fs-extra": "^10.0.0"
   }
 }
