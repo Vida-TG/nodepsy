@@ -2,6 +2,7 @@
 
 const { program } = require('commander');
 const { newProject } = require('./commands/project');
+const { addModel } = require('./commands/model');
 
 program
   .version('0.0.1')
@@ -13,6 +14,13 @@ program
   .option('--stack <stack>', 'technology stack to use', 'node-mongo')
   .description('Create a new backend project')
   .action(newProject);
+
+program
+  .command('add')
+  .command('model <name>')
+  .option('--fields <fields>', 'Model fields in format "field:type, field:type"')
+  .description('Add a new database model')
+  .action(addModel);
 
 program.parse(process.argv);
 
