@@ -3,6 +3,7 @@
 const { program } = require('commander');
 const { newProject } = require('./commands/project');
 const { addModel } = require('./commands/model');
+const { generateApi } = require('./commands/generate');
 
 program
   .version('0.0.1')
@@ -14,6 +15,14 @@ program
   .option('--stack <stack>', 'technology stack to use', 'node-mongo')
   .description('Create a new backend project')
   .action(newProject);
+
+program
+  .command('generate')
+  .command('api <resource>')
+  .option('--crud', 'Generate CRUD endpoints')
+  .option('--graphql', 'Generate GraphQL API')
+  .description('Generate API endpoints')
+  .action(generateApi);
 
 program
   .command('add')
