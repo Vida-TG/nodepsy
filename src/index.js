@@ -4,6 +4,7 @@ const { program } = require('commander');
 const { newProject } = require('./commands/project');
 const { addModel } = require('./commands/model');
 const { generateApi } = require('./commands/generate');
+const { auth } = require('./commands/auth');
 
 program
   .version('0.0.1')
@@ -30,6 +31,19 @@ program
   .option('--fields <fields>', 'Model fields in format "field:type, field:type"')
   .description('Add a new database model')
   .action(addModel);
+
+program
+  .command('auth')
+  .command('generate')
+  .option('--user <type>', 'User type for token')
+  .description('Generate JWT token')
+  .action(auth.generate);
+
+program
+  .command('auth')
+  .command('verify <token>')
+  .description('Verify JWT token')
+  .action(auth.verify);
 
 program.parse(process.argv);
 
