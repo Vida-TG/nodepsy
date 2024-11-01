@@ -5,6 +5,8 @@ const { newProject } = require('./commands/project');
 const { addModel } = require('./commands/model');
 const { generateApi } = require('./commands/generate');
 const { auth } = require('./commands/auth');
+const { env } = require('./commands/env');
+const { setupCI } = require('./commands/ci');
 
 program
   .version('0.0.1')
@@ -44,6 +46,19 @@ program
   .command('verify <token>')
   .description('Verify JWT token')
   .action(auth.verify);
+
+program
+  .command('env')
+  .command('set <keyValue>')
+  .description('Set environment variable')
+  .action(env.set);
+
+program
+  .command('setup')
+  .command('ci')
+  .option('--github', 'Setup GitHub Actions')
+  .description('Setup CI/CD pipeline')
+  .action(setupCI);
 
 program.parse(process.argv);
 
