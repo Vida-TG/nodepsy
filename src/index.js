@@ -7,6 +7,7 @@ const { generateApi } = require('./commands/generate');
 const { auth } = require('./commands/auth');
 const { env } = require('./commands/env');
 const { setupCI } = require('./commands/ci');
+const { generateMockData } = require('./commands/mock');
 
 program
   .version('0.0.1')
@@ -59,6 +60,13 @@ program
   .option('--github', 'Setup GitHub Actions')
   .description('Setup CI/CD pipeline')
   .action(setupCI);
+
+program
+  .command('auth')
+  .command('mock')
+  .option('--count <number>', 'Number of mock users to create', '10')
+  .description('Generate mock users for testing')
+  .action(generateMockData);
 
 program.parse(process.argv);
 
