@@ -8,6 +8,7 @@ const { auth } = require('./commands/auth');
 const { env } = require('./commands/env');
 const { setupCI } = require('./commands/ci');
 const { generateMockData } = require('./commands/mock');
+const { deploy } = require('./commands/deploy');
 
 program
   .version('0.0.1')
@@ -67,6 +68,12 @@ program
   .option('--count <number>', 'Number of mock users to create', '10')
   .description('Generate mock users for testing')
   .action(generateMockData);
+
+program
+  .command('deploy')
+  .option('--platform <platform>', 'Platform to deploy to (heroku)')
+  .description('Deploy the application')
+  .action(deploy);
 
 program.parse(process.argv);
 
