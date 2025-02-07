@@ -1,8 +1,10 @@
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
+const ora = require('ora');
 
 const addModel = async (name, options) => {
+  const spinner = ora('Creating model...').start();
   try {
     const fields = parseFields(options.fields);
     const modelContent = generateModelContent(name, fields);
@@ -12,9 +14,10 @@ const addModel = async (name, options) => {
       modelContent
     );
 
-    console.log(chalk.green(`\n✨ Model ${name} created successfully!\n`));
+    spinner.succeed(chalk.green(`Model ${name} created successfully!`));
 
   } catch (error) {
+    spinner.fail('Failed to create model');
     console.error(chalk.red('Failed to create model:'), error);
     process.exit(1);
   }

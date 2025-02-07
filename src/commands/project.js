@@ -1,14 +1,18 @@
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
+const ora = require('ora');
 
 const newProject = async (projectName, options) => {
+  const spinner = ora('Creating new project...').start();
+
   try {
     const projectPath = path.join(process.cwd(), projectName);
     
     // Create project
     await fs.ensureDir(projectPath);
     
+    spinner.text = 'Setting up directory structure...';
     const dirs = [
       'src',
       'src/controllers',
@@ -21,6 +25,7 @@ const newProject = async (projectName, options) => {
       await fs.ensureDir(path.join(projectPath, dir));
     }
 
+    spinner.text = 'Generating configuration files...';
     const packageJson = {
       name: projectName,
       version: '1.0.0',
@@ -64,13 +69,14 @@ app.listen(PORT, () => {
 
     await fs.writeFile(path.join(projectPath, 'src', 'app.js'), appJs);
 
-    console.log(chalk.green(`\n✨ Project ${projectName} created successfully!\n`));
+    spinner.succeed(chalk.green(`Project ${projectName} created successfully!`));
     console.log(chalk.blue('Next steps:'));
     console.log(chalk.white(`  cd ${projectName}`));
     console.log(chalk.white('  npm install'));
     console.log(chalk.white('  npm start\n'));
 
   } catch (error) {
+    spinner.fail(chalk.red('Failed to create project'));
     console.error(chalk.red('Failed to create project:'), error);
     process.exit(1);
   }
